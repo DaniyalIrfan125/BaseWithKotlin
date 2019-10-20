@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable
 /****
  * Base repository which is responsible for executing all the REST service calls
  *****/
-open class BaseRepository(val scheduler: SchedulerContract) {
+open class BaseRepository(private val scheduler: SchedulerContract) {
 
 
     /**

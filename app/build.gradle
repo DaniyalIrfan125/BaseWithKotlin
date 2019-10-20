@@ -74,4 +74,14 @@ dependencies {
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //Room
+    implementation "androidx.room:room-runtime:2.2.0"
+    implementation "androidx.room:room-ktx:2.2.0"
+    kapt "androidx.room:room-compiler:2.2.0"
+    androidTestImplementation "androidx.room:room-testing:2.2.0"
+
+
+    //stetho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

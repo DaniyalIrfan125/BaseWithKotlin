@@ -3,6 +3,7 @@ package daniyal.android.basewithkotlin
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import com.facebook.stetho.Stetho
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import daniyal.android.basewithkotlin.di.AppInjector
@@ -29,6 +30,8 @@ class BaseApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         AppInjector.init(this)
+
+        Stetho.initializeWithDefaults(this)
     }
 
     override fun activityInjector() = dispatchingAndroidInjector

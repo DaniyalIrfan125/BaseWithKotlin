@@ -7,10 +7,6 @@ import io.reactivex.schedulers.Schedulers
 
 /****
  * Android Scheduler provider for executing the asynchronous operations
- * Author: Lajesh Dineshkumar
- * Company: Lavaira
- * Created on: 4/3/19
- * Modified on: 4/3/19
  *****/
 class SchedulerProvider : SchedulerContract {
 
