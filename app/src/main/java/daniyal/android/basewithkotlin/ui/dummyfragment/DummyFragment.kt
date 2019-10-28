@@ -22,13 +22,20 @@ class DummyFragment : BaseFragment<DummyFragmentBinding, DummyViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mViewModel.text.set("fuck")
+
     }
 
     override fun subscribeForNavigation() {
         super.subscribeForNavigation()
 
+
         mViewModel.navigateToSecondFragment.observe(this , Observer {
             Toast.makeText(activity, "navigate called", Toast.LENGTH_LONG).show()
+        })
+
+        mViewModel.response3.observe(this, Observer {
+
+            Toast.makeText(activity, it.data!!.status.creditCount.toString(), Toast.LENGTH_LONG).show()
         })
     }
 

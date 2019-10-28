@@ -12,7 +12,9 @@ import timber.log.Timber
 import javax.inject.Inject
 import android.os.AsyncTask
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import daniyal.android.basewithkotlin.data.models.CoinMarketPojo
+import daniyal.android.basewithkotlin.data.models.EmployePojo
+import daniyal.android.basewithkotlin.data.models.ToDoPojo
 
 
 class MainRepository @Inject constructor(private val api: ApiInterface, private val userDao: UserDao, scheduler: SchedulerContract) :
@@ -34,15 +36,45 @@ class MainRepository @Inject constructor(private val api: ApiInterface, private 
         performRequest(api.login(authorizationHeader, bodyParams), responseListener)
     }
 
+    /**
+     * The method for performing the user login
+     * @param authorizationHeader : Access Token
+     * @param bodyParams: Json Body
+     * @param responseListener: Response Listener Callback
+     */
+    fun getEmployeDetails(responseListener: ResponseListener<List<EmployePojo>>) {
+        performRequest(api.getEmployee(), responseListener)
+    }
+
+    /**
+     * The method for performing the user login
+     * @param authorizationHeader : Access Token
+     * @param bodyParams: Json Body
+     * @param responseListener: Response Listener Callback
+     */
+    fun getToDo(responseListener: ResponseListener<ToDoPojo>) {
+        performRequest(api.getToDo(), responseListener)
+    }
 
 
-    fun addUser(userEntity: UserEntity){
-       // insertAsyncTask(userDao).execute(userEntity)
+    /**
+     * The method for performing the user login
+     * @param authorizationHeader : Access Token
+     * @param bodyParams: Json Body
+     * @param responseListener: Response Listener Callback
+     */
+    fun getCoinMarketDetails(apiKey: String, start: String, limit: String, responseListener: ResponseListener<CoinMarketPojo>) {
+        performRequest(api.getCoinMarketDetails(apiKey,start,limit), responseListener)
+    }
+
+
+    fun addUser(userEntity: UserEntity) {
+        // insertAsyncTask(userDao).execute(userEntity)
         userDao.saveUser(userEntity)
 
     }
 
-   fun showData(): LiveData<List<UserEntity>>{
+    fun showData(): LiveData<List<UserEntity>> {
 
         return userDao.loadUsersList()
 
