@@ -6,22 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import daniyal.android.basewithkotlin.MainViewModel
 import daniyal.android.basewithkotlin.utils.NetworkUtils
 import javax.inject.Inject
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(),
-    HasSupportFragmentInjector {
+        HasSupportFragmentInjector {
 
-    private var mViewDataBinding: T? = null
-    private var mViewModel: V? = null
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var mViewDataBinding: T
+    protected lateinit var mViewModel: V
 
     /**
      * viewModel variable that will get value from activity which it will implement this
      * we will use this variable viewModel to bind with view through databinding
      */
-    abstract val viewModel: V
+    abstract val viewModel: Class<V>
 
     /**
      * layoutId variable to get layout value from activity which will implement this layoutId
@@ -37,7 +43,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
     abstract val bindingVariable: Int
 
 
-
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
@@ -51,9 +56,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
      */
     private fun databindingWithViewModel() {
         mViewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        this.mViewModel = if (null == mViewModel) viewModel else mViewModel
-        mViewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        mViewDataBinding!!.executePendingBindings()
+        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModel)
+        mViewDataBinding.setVariable(bindingVariable, mViewModel)
+        mViewDataBinding.executePendingBindings()
 
     }
 
@@ -62,4 +67,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
+
+    override fun onBackPressed() {
+        if ((mViewModel as MainViewModel).showProgressbar.get())
+            return
+        else
+            super.onBackPressed()
+    }
 }

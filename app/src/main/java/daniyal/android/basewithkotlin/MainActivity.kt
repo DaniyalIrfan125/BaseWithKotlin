@@ -1,16 +1,14 @@
 package daniyal.android.basewithkotlin
 
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import daniyal.android.basewithkotlin.base.BaseActivity
 import daniyal.android.basewithkotlin.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    override val viewModel: MainViewModel
-        get() = ViewModelProviders.of(this).get(MainViewModel::class.java)
+    override val viewModel: Class<MainViewModel>
+        get() = MainViewModel::class.java
+
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -24,7 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.Usertext.set("base project")
+        mViewModel.Usertext.set("base project")
 
 //        dataBinding =
 //            DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -36,5 +34,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 //        viewModel!!.Usertext.set("hello daniyal")
 
 
+    }
+
+    fun showLoading() {
+        mViewModel.showProgressbar.set(true)
+    }
+
+    fun stopLoading() {
+        mViewModel.showProgressbar.set(false)
     }
 }

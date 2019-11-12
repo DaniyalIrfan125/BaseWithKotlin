@@ -3,20 +3,22 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="daniyal.android.basewithkotlin.MainViewModel" />
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".MainActivity">
 
         <TextView
+            android:id="@+id/textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.Usertext}" />
@@ -26,9 +28,20 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/textview"
             app:defaultNavHost="true"
             app:navGraph="@navigation/dummy_graph" />
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:visibility="@{viewModel.showProgressbar ? View.VISIBLE : View.INVISIBLE}" />
+
+
+    </RelativeLayout>
 
 </layout>

@@ -35,7 +35,12 @@ class DummyFragment : BaseFragment<DummyFragmentBinding, DummyViewModel>() {
 
         mViewModel.response3.observe(this, Observer {
 
-            Toast.makeText(activity, it.data!!.status.creditCount.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,"first response " +it.data!!.status.creditCount.toString(), Toast.LENGTH_LONG).show()
+            mViewModel.callMarketApi()
+        })
+
+        mViewModel.response4.observe(this, Observer {
+            Toast.makeText(activity, "second response"  + it.data!!.status.creditCount.toString(), Toast.LENGTH_LONG).show()
         })
     }
 

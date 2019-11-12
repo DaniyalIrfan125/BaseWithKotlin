@@ -22,6 +22,7 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
     val response: SingleLiveEvent<ApiResponse<List<EmployePojo>>> = SingleLiveEvent()
     val response1: SingleLiveEvent<ApiResponse<ToDoPojo>> = SingleLiveEvent()
     val response3: SingleLiveEvent<ApiResponse<CoinMarketPojo>> = SingleLiveEvent()
+    val response4: SingleLiveEvent<ApiResponse<CoinMarketPojo>> = SingleLiveEvent()
 
     var text = ObservableField<String>()
 
@@ -43,6 +44,7 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
     }
 
     fun OnClick() {
+
 //        navigateToSecondFragment.call()
 //        mainRepository.addUser(UserEntity("eiza", "34"))
 
@@ -77,14 +79,13 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
 //        })
 
 
-
-        mainRepository.getCoinMarketDetails("9bcd6afc-3f2a-44eb-b34f-ef552a1fe962","1","20",object : ResponseListener<CoinMarketPojo> {
+        mainRepository.getCoinMarketDetails("9bcd6afc-3f2a-44eb-b34f-ef552a1fe962", "1", "20", object : ResponseListener<CoinMarketPojo> {
             override fun onStart() {
-
+                showLoading.value = true
             }
 
             override fun onFinish() {
-
+                showLoading.value = false
             }
 
             override fun onResponse(result: ApiResponse<CoinMarketPojo>) {
@@ -92,6 +93,25 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
             }
 
         })
+    }
+
+    fun callMarketApi() {
+
+        mainRepository.getCoinMarketDetails("9bcd6afc-3f2a-44eb-b34f-ef552a1fe962", "1", "20", object : ResponseListener<CoinMarketPojo> {
+            override fun onStart() {
+                showLoading.value = true
+            }
+
+            override fun onFinish() {
+                showLoading.value = false
+            }
+
+            override fun onResponse(result: ApiResponse<CoinMarketPojo>) {
+                response4.value = result
+            }
+
+        })
+
     }
 
 }

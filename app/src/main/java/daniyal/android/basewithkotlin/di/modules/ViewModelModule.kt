@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import daniyal.android.basewithkotlin.MainViewModel
 import daniyal.android.basewithkotlin.ViewModelFactory
 import daniyal.android.basewithkotlin.di.key.ViewModelKey
 import daniyal.android.basewithkotlin.ui.dummyfragment.DummyViewModel
@@ -17,8 +18,14 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(DummyViewModel::class)
     fun bindDummyViewModel(dummyViewModel: DummyViewModel): ViewModel
+
 
     @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
