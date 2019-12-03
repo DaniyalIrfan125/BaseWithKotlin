@@ -27,6 +27,9 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
     var text = ObservableField<String>()
 
     init {
+        mainRepository.getDataFromSharedPreference()?.let {
+            text.set(it)
+        }
 //        mainRepository.getEmployeDetails(object : ResponseListener<List<EmployePojo>> {
 //            override fun onStart() {
 //
@@ -44,6 +47,8 @@ class DummyViewModel @Inject constructor(private val mainRepository: MainReposit
     }
 
     fun OnClick() {
+
+        mainRepository.insertDataToSharedPreference("my name is daniyal irfan")
 
 //        navigateToSecondFragment.call()
 //        mainRepository.addUser(UserEntity("eiza", "34"))

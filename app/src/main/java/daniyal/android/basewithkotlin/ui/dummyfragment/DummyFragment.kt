@@ -21,7 +21,7 @@ class DummyFragment : BaseFragment<DummyFragmentBinding, DummyViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel.text.set("fuck")
+      //  mViewModel.text.set("tesing perposes")
 
     }
 

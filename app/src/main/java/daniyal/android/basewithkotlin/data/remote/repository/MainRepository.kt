@@ -15,9 +15,10 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import daniyal.android.basewithkotlin.data.models.CoinMarketPojo
 import daniyal.android.basewithkotlin.data.models.EmployePojo
 import daniyal.android.basewithkotlin.data.models.ToDoPojo
+import daniyal.android.basewithkotlin.data.preferences.SharedPreferenceProvider
 
 
-class MainRepository @Inject constructor(private val api: ApiInterface, private val userDao: UserDao, scheduler: SchedulerContract) :
+class MainRepository @Inject constructor(private val api: ApiInterface, private val userDao: UserDao, scheduler: SchedulerContract, private val sharedPreferenceProvider: SharedPreferenceProvider) :
         BaseRepository(scheduler) {
 
 
@@ -64,7 +65,7 @@ class MainRepository @Inject constructor(private val api: ApiInterface, private 
      * @param responseListener: Response Listener Callback
      */
     fun getCoinMarketDetails(apiKey: String, start: String, limit: String, responseListener: ResponseListener<CoinMarketPojo>) {
-        performRequest(api.getCoinMarketDetails(apiKey,start,limit), responseListener)
+        performRequest(api.getCoinMarketDetails(apiKey, start, limit), responseListener)
     }
 
 
@@ -81,11 +82,10 @@ class MainRepository @Inject constructor(private val api: ApiInterface, private 
     }
 
 
-    private class insertAsyncTask internal constructor(private val mAsyncTaskDao: UserDao) : AsyncTask<UserEntity, Void, Void>() {
-
-        override fun doInBackground(vararg params: UserEntity): Void? {
-            mAsyncTaskDao.saveUser(params[0])
-            return null
-        }
+fun insertDataToSharedPreference(item :String){
+    sharedPreferenceProvider.insertData(item)
+}
+    fun getDataFromSharedPreference():String?{
+        return sharedPreferenceProvider.getData()
     }
 }

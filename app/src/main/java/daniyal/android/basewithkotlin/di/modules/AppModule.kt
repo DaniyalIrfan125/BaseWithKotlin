@@ -6,8 +6,10 @@ import daniyal.android.basewithkotlin.schedulers.SchedulerContract
 import daniyal.android.basewithkotlin.schedulers.SchedulerProvider
 import dagger.Module
 import dagger.Provides
+import daniyal.android.basewithkotlin.BaseApplication
 import daniyal.android.basewithkotlin.data.local.dao.UserDao
 import daniyal.android.basewithkotlin.data.local.db.LocalDatabase
+import daniyal.android.basewithkotlin.data.preferences.SharedPreferenceProvider
 import daniyal.android.basewithkotlin.data.remote.ApiInterface
 import daniyal.android.basewithkotlin.data.remote.repository.MainRepository
 import retrofit2.Retrofit
@@ -25,14 +27,20 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository(api: ApiInterface, userDao: UserDao, scheduler: SchedulerContract): MainRepository {
-        return MainRepository(api,userDao, scheduler)
+    fun provideMainRepository(api: ApiInterface, userDao: UserDao, scheduler: SchedulerContract, sharedPreferenceProvider: SharedPreferenceProvider): MainRepository {
+        return MainRepository(api, userDao, scheduler, sharedPreferenceProvider)
     }
 
     @Provides
     @Singleton
     fun provideScheduler(): SchedulerContract {
         return SchedulerProvider()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(): SharedPreferenceProvider {
+        return SharedPreferenceProvider(BaseApplication.applicationContext())
     }
 
     @Provides
