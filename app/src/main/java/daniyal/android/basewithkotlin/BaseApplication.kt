@@ -9,6 +9,9 @@ import dagger.android.HasActivityInjector
 import daniyal.android.basewithkotlin.di.AppInjector
 import javax.inject.Inject
 
+/**
+ * Base Application class
+ */
 class BaseApplication : Application(), HasActivityInjector {
 
     @Inject

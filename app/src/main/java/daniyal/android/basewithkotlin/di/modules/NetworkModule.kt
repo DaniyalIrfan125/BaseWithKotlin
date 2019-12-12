@@ -12,7 +12,9 @@ import javax.inject.Singleton
 import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 
-
+/**
+ * Network Module
+ **/
 
 @Module
 class NetworkModule {

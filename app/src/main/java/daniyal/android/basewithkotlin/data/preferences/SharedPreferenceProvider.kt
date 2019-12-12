@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import daniyal.android.basewithkotlin.utils.AppConstants
 
+
+/**
+ * Shared Preference Provider Class
+ */
 class SharedPreferenceProvider(context: Context) {
 
     private val appContext = context.applicationContext

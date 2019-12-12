@@ -8,6 +8,10 @@ import daniyal.android.basewithkotlin.data.models.User
 import io.reactivex.Observable
 import retrofit2.http.*
 
+/**
+ * Api interface class in which endpoints of url are mentioned
+ */
+
 interface ApiInterface {
 
     @POST("user/login")

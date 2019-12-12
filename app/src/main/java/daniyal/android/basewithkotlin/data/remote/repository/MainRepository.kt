@@ -17,7 +17,9 @@ import daniyal.android.basewithkotlin.data.models.EmployePojo
 import daniyal.android.basewithkotlin.data.models.ToDoPojo
 import daniyal.android.basewithkotlin.data.preferences.SharedPreferenceProvider
 
-
+/**
+ * Main repository class of this project
+ */
 class MainRepository @Inject constructor(private val api: ApiInterface, private val userDao: UserDao, scheduler: SchedulerContract, private val sharedPreferenceProvider: SharedPreferenceProvider) :
         BaseRepository(scheduler) {
 

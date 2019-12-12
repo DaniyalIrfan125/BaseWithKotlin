@@ -6,9 +6,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-/****
+/**
  * Custom View Model factory class which is responsible for providing all the viewmodel instances
- *****/
+ **/
 @Suppress("UNCHECKED_CAST")
 @Singleton
 class ViewModelFactory

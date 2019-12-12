@@ -14,6 +14,10 @@ import daniyal.android.basewithkotlin.MainViewModel
 import daniyal.android.basewithkotlin.utils.NetworkUtils
 import javax.inject.Inject
 
+/**
+ * Base Activity class
+ */
+
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(),
         HasSupportFragmentInjector {
 

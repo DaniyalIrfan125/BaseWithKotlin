@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 
-/****
+/**
  * ViewModel Key*
- *****/
+ **/
 
 @MapKey
 @MustBeDocumented

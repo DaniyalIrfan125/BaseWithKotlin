@@ -10,9 +10,9 @@ import daniyal.android.basewithkotlin.ViewModelFactory
 import daniyal.android.basewithkotlin.di.key.ViewModelKey
 import daniyal.android.basewithkotlin.ui.dummyfragment.DummyViewModel
 
-/****
+/**
  * View Model module which provides the viewmodelfactory and viewmodel instances
- *****/
+ **/
 @Module
 interface ViewModelModule {
 

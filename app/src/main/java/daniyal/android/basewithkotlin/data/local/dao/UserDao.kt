@@ -6,7 +6,9 @@ import androidx.room.Insert
 import androidx.room.Query
 import daniyal.android.basewithkotlin.data.local.entity.UserEntity
 
-
+/**
+ * Dao class for Room Db
+ */
 @Dao
 interface UserDao {
 

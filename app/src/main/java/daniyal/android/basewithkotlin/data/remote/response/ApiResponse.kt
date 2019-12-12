@@ -10,10 +10,10 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
-/****
+/**
  * Data model class which represents the API Response
+ **/
 
- *****/
 data class ApiResponse<out T>(
     val status: Int,
     val data: T?,

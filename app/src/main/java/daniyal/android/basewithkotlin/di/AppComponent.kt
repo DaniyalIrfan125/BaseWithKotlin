@@ -11,6 +11,10 @@ import daniyal.android.basewithkotlin.di.modules.AppModule
 import daniyal.android.basewithkotlin.di.modules.NetworkModule
 import javax.inject.Singleton
 
+/**
+ * App component interface of Dagger 2
+ */
+
 @Singleton
 @Component(modules = [NetworkModule::class, AppModule::class, ActivityBuilderModule::class, AndroidInjectionModule::class])
 interface AppComponent {

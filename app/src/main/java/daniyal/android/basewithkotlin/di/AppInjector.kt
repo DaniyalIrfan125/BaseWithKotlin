@@ -12,10 +12,10 @@ import dagger.android.support.HasSupportFragmentInjector
 import daniyal.android.basewithkotlin.BaseApplication
 
 
-/****
+/**
  * Helper class to automatically inject fragments if they implement [Injectable].
- * Modified on: 4/3/19
- *****/
+ **/
+
 object AppInjector {
     fun init(baseApplication: BaseApplication) {
         DaggerAppComponent.builder().application(baseApplication)

@@ -8,9 +8,9 @@ import daniyal.android.basewithkotlin.data.remote.response.ResponseStatus
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 
-/****
+/*
  * Base repository which is responsible for executing all the REST service calls
- *****/
+ */
 open class BaseRepository(private val scheduler: SchedulerContract) {
 
 
